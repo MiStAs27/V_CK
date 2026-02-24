@@ -40,7 +40,7 @@ interface EditProductDialogProps {
   product: Product | null;
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
-  onSave: (updatedProduct: Product) => void;
+  onSave: (productData: Product, isNew: boolean) => void;
 }
 
 export function EditProductDialog({
@@ -54,39 +54,56 @@ export function EditProductDialog({
     resolver: zodResolver(ProductSchema),
   });
 
+  const isNewProduct = !product;
+
   useEffect(() => {
-    if (product) {
-      form.reset({
-        name: product.name,
-        imageUrl: product.imageUrl,
-        price: product.price,
-        stock: product.stock,
-        status: product.status,
-      });
+    if (isOpen) {
+      form.reset(
+        product
+          ? {
+              name: product.name,
+              imageUrl: product.imageUrl,
+              price: product.price,
+              stock: product.stock,
+              status: product.status,
+            }
+          : {
+              name: '',
+              imageUrl: `https://picsum.photos/seed/${Math.random()}/400/300`,
+              price: 0,
+              stock: 0,
+              status: 'active',
+            }
+      );
     }
   }, [product, form, isOpen]);
 
   const onSubmit = (data: ProductFormData) => {
-    if (!product) return;
-
-    const updatedProduct: Product = {
-      ...product,
+    if (!isOpen) return;
+    
+    const productData: Product = {
+      id: product?.id || Date.now().toString(),
+      sku: product?.sku || `SKU-${Date.now().toString().slice(-5)}`,
+      category: product?.category || 'Uncategorized',
+      imageHint: product?.imageHint || data.name.split(' ').slice(0, 2).join(' ').toLowerCase(),
+      historicalSales: product?.historicalSales || [],
       ...data,
     };
-    onSave(updatedProduct);
+    onSave(productData, isNewProduct);
     toast({
-      title: 'Producto actualizado',
-      description: `El producto "${updatedProduct.name}" ha sido actualizado.`,
+      title: isNewProduct ? 'Producto añadido' : 'Producto actualizado',
+      description: `El producto "${productData.name}" ha sido ${isNewProduct ? 'añadido' : 'actualizado'}.`,
     });
+    onOpenChange(false);
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Editar Producto</DialogTitle>
+          <DialogTitle>{isNewProduct ? 'Añadir Producto' : 'Editar Producto'}</DialogTitle>
           <DialogDescription>
-            Realiza cambios en el producto. Haz clic en guardar cuando hayas terminado.
+            {isNewProduct ? 'Añade un nuevo producto a tu inventario.' : 'Realiza cambios en el producto. Haz clic en guardar cuando hayas terminado.'}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>

@@ -11,19 +11,27 @@ import { EditProductDialog } from '@/components/products/edit-product-dialog';
 
 export default function ProductsPage() {
   const [products, setProducts] = React.useState<Product[]>(initialProducts);
-  const [editingProduct, setEditingProduct] = React.useState<Product | null>(null);
-  const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(null);
 
   const handleEdit = React.useCallback((product: Product) => {
-    setEditingProduct(product);
-    setIsEditDialogOpen(true);
+    setSelectedProduct(product);
+    setIsDialogOpen(true);
   }, []);
 
-  const handleSave = (updatedProduct: Product) => {
-    setProducts(currentProducts =>
-      currentProducts.map(p => (p.id === updatedProduct.id ? updatedProduct : p))
-    );
-    setIsEditDialogOpen(false);
+  const handleAdd = () => {
+    setSelectedProduct(null);
+    setIsDialogOpen(true);
+  };
+
+  const handleSave = (productData: Product, isNew: boolean) => {
+    if (isNew) {
+      setProducts(currentProducts => [productData, ...currentProducts]);
+    } else {
+      setProducts(currentProducts =>
+        currentProducts.map(p => (p.id === productData.id ? productData : p))
+      );
+    }
   };
 
   const columns = React.useMemo(() => getColumns({ onEdit: handleEdit }), [handleEdit]);
@@ -37,21 +45,19 @@ export default function ProductsPage() {
             Gestiona tu inventario de productos.
           </p>
         </div>
-        <Button>
+        <Button onClick={handleAdd}>
           <PlusCircle className="mr-2 h-4 w-4" />
           Añadir Producto
         </Button>
       </div>
       <DataTable columns={columns} data={products} />
-      {editingProduct && (
-        <EditProductDialog
-          key={editingProduct.id}
-          product={editingProduct}
-          isOpen={isEditDialogOpen}
-          onOpenChange={setIsEditDialogOpen}
-          onSave={handleSave}
-        />
-      )}
+      <EditProductDialog
+        key={selectedProduct?.id ?? 'new'}
+        product={selectedProduct}
+        isOpen={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+        onSave={handleSave}
+      />
     </div>
   );
 }
