@@ -9,9 +9,9 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Panel de Control</h1>
         <p className="text-muted-foreground">
-          Welcome back! Here's a quick overview of your inventory.
+          ¡Bienvenido de nuevo! Aquí tienes un resumen rápido de tu inventario.
         </p>
       </div>
 
@@ -22,10 +22,10 @@ export default function DashboardPage() {
           <CardHeader>
             <div className="flex items-center gap-2">
               <BarChart className="h-5 w-5 text-muted-foreground" />
-              <CardTitle>Best Sellers</CardTitle>
+              <CardTitle>Más Vendidos</CardTitle>
             </div>
             <CardDescription>
-              Monthly sales performance of your top products.
+              Rendimiento de ventas mensual de tus productos principales.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -37,10 +37,10 @@ export default function DashboardPage() {
           <CardHeader>
              <div className="flex items-center gap-2">
                 <Bot className="h-5 w-5 text-muted-foreground" />
-                <CardTitle>AI Sales Forecast</CardTitle>
+                <CardTitle>Pronóstico de Ventas con IA</CardTitle>
              </div>
             <CardDescription>
-              Generate a demand forecast explanation for a product.
+              Genera una explicación del pronóstico de demanda para un producto.
             </CardDescription>
           </CardHeader>
           <CardContent>

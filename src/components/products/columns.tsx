@@ -17,14 +17,14 @@ export const columns: ColumnDef<Product>[] = [
           (table.getIsSomePageRowsSelected() && 'indeterminate')
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
+        aria-label="Seleccionar todo"
       />
     ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
+        aria-label="Seleccionar fila"
       />
     ),
     enableSorting: false,
@@ -32,7 +32,7 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: 'name',
-    header: 'Product',
+    header: 'Producto',
     cell: ({ row }) => {
       const product = row.original;
       return (
@@ -57,12 +57,13 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'Status',
+    header: 'Estado',
     cell: ({ row }) => {
       const status = row.getValue('status') as string;
+      const translated = status === 'active' ? 'Activo' : 'Desactivado';
       return (
         <Badge variant={status === 'active' ? 'default' : 'secondary'}>
-          {status.charAt(0).toUpperCase() + status.slice(1)}
+          {translated}
         </Badge>
       );
     },
@@ -73,17 +74,17 @@ export const columns: ColumnDef<Product>[] = [
     cell: ({ row }) => {
         const stock = row.getValue('stock') as number;
         const color = stock < 10 ? 'text-destructive' : 'text-foreground';
-        return <div className={color}>{stock} units</div>
+        return <div className={color}>{stock} unidades</div>
     }
   },
   {
     accessorKey: 'price',
-    header: 'Price',
+    header: 'Precio',
     cell: ({ row }) => {
       const price = parseFloat(row.getValue('price'));
-      const formatted = new Intl.NumberFormat('en-US', {
+      const formatted = new Intl.NumberFormat('es-ES', {
         style: 'currency',
-        currency: 'USD',
+        currency: 'EUR',
       }).format(price);
       return <div className="font-medium">{formatted}</div>;
     },

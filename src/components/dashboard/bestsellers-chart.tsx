@@ -21,7 +21,7 @@ export function BestsellersChart({ products }: BestsellersChartProps) {
 
   const chartConfig = {
     sales: {
-      label: 'Units Sold',
+      label: 'Unidades Vendidas',
       color: 'hsl(var(--primary))',
     },
   } satisfies ChartConfig;

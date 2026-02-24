@@ -9,14 +9,14 @@ export default function ProductsPage() {
     <div className="flex flex-col gap-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Products</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Productos</h1>
           <p className="text-muted-foreground">
-            Manage your product inventory.
+            Gestiona tu inventario de productos.
           </p>
         </div>
         <Button>
           <PlusCircle className="mr-2 h-4 w-4" />
-          Add Product
+          Añadir Producto
         </Button>
       </div>
       <DataTable columns={columns} data={products} />

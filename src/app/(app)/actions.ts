@@ -12,6 +12,6 @@ export async function getForecastExplanation(
     return { success: true, explanation };
   } catch (error) {
     console.error(error);
-    return { success: false, error: 'Failed to generate forecast explanation.' };
+    return { success: false, error: 'No se pudo generar la explicación del pronóstico.' };
   }
 }

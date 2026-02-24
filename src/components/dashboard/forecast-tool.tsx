@@ -31,7 +31,7 @@ type ForecastToolProps = {
 };
 
 const FormSchema = z.object({
-  productId: z.string().min(1, 'Please select a product.'),
+  productId: z.string().min(1, 'Por favor, selecciona un producto.'),
 });
 
 export function ForecastTool({ products }: ForecastToolProps) {
@@ -57,14 +57,14 @@ export function ForecastTool({ products }: ForecastToolProps) {
     const historicalTrend =
       product.historicalSales.slice(-1)[0].sales >
       product.historicalSales.slice(-2)[0].sales
-        ? 'steady increase'
-        : 'stable';
+        ? 'aumento constante'
+        : 'estable';
 
     const result = await getForecastExplanation({
       productName: product.name,
       predictedDemand,
-      timePeriod: 'next month',
-      contributingFactors: ['seasonal demand', 'recent marketing campaign'],
+      timePeriod: 'próximo mes',
+      contributingFactors: ['demanda estacional', 'campaña de marketing reciente'],
       historicalSalesTrend: historicalTrend,
     });
 
@@ -89,14 +89,14 @@ export function ForecastTool({ products }: ForecastToolProps) {
             name="productId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Product</FormLabel>
+                <FormLabel>Producto</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a product" />
+                      <SelectValue placeholder="Selecciona un producto" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -113,7 +113,7 @@ export function ForecastTool({ products }: ForecastToolProps) {
           />
           <Button type="submit" disabled={isLoading} className="w-full">
             <Sparkles className="mr-2 h-4 w-4" />
-            {isLoading ? 'Generating...' : 'Generate Explanation'}
+            {isLoading ? 'Generando...' : 'Generar Explicación'}
           </Button>
         </form>
       </Form>

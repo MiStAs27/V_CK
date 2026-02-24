@@ -1,27 +1,27 @@
 'use server';
 /**
- * @fileOverview A Genkit flow for generating natural language explanations of sales forecasts.
+ * @fileOverview Un flujo de Genkit para generar explicaciones en lenguaje natural de pronósticos de ventas.
  *
- * - explainSalesForecast - A function that provides a natural language explanation of a sales forecast.
- * - SalesForecastExplanationInput - The input type for the explainSalesForecast function.
- * - SalesForecastExplanationOutput - The return type for the explainSalesForecast function.
+ * - explainSalesForecast - Una función que proporciona una explicación en lenguaje natural de un pronóstico de ventas.
+ * - SalesForecastExplanationInput - El tipo de entrada para la función explainSalesForecast.
+ * - SalesForecastExplanationOutput - El tipo de retorno para la función explainSalesForecast.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const SalesForecastExplanationInputSchema = z.object({
-  productName: z.string().describe('The name of the product.'),
+  productName: z.string().describe('El nombre del producto.'),
   predictedDemand: z
     .number()
-    .describe('The predicted demand for the product (e.g., units per month).'),
-  timePeriod: z.string().describe('The time period for the forecast (e.g., "next month", "Q3 2024").'),
+    .describe('La demanda prevista para el producto (por ejemplo, unidades por mes).'),
+  timePeriod: z.string().describe('El período de tiempo para el pronóstico (por ejemplo, "próximo mes", "T3 2024").'),
   contributingFactors: z
     .array(z.string())
-    .describe('Key factors contributing to the forecast (e.g., "seasonal demand", "marketing campaign", "competitor actions").'),
+    .describe('Factores clave que contribuyen al pronóstico (por ejemplo, "demanda estacional", "campaña de marketing", "acciones de la competencia").'),
   historicalSalesTrend: z
     .string()
-    .describe('A summary of recent historical sales trends for the product (e.g., "steady increase", "recent decline", "stable").'),
+    .describe('Un resumen de las tendencias históricas recientes de ventas del producto (por ejemplo, "aumento constante", "disminución reciente", "estable").'),
 });
 export type SalesForecastExplanationInput = z.infer<
   typeof SalesForecastExplanationInputSchema
@@ -30,7 +30,7 @@ export type SalesForecastExplanationInput = z.infer<
 const SalesForecastExplanationOutputSchema = z
   .string()
   .describe(
-    'A clear, natural language explanation and summary of the predicted demand, highlighting key contributing factors and trends.'
+    'Una explicación y resumen claros en lenguaje natural de la demanda prevista, destacando los factores y tendencias clave que contribuyen.'
   );
 export type SalesForecastExplanationOutput = z.infer<
   typeof SalesForecastExplanationOutputSchema
@@ -46,15 +46,15 @@ const salesForecastExplanationPrompt = ai.definePrompt({
   name: 'salesForecastExplanationPrompt',
   input: {schema: SalesForecastExplanationInputSchema},
   output: {schema: SalesForecastExplanationOutputSchema},
-  prompt: `As an expert sales analyst, provide a clear and concise natural language explanation and summary of the sales forecast for the following product. Highlight the predicted demand, the time period covered, and the key contributing factors and historical trends.
+  prompt: `Como analista de ventas experto, proporciona una explicación y un resumen claros y concisos en lenguaje natural del pronóstico de ventas para el siguiente producto. Destaca la demanda prevista, el período de tiempo cubierto y los factores clave que contribuyen y las tendencias históricas.
 
-Product Name: {{{productName}}}
-Predicted Demand: {{{predictedDemand}}}
-Time Period: {{{timePeriod}}}
-Contributing Factors: {{#each contributingFactors}}- {{{this}}}\n{{/each}}
-Historical Sales Trend: {{{historicalSalesTrend}}}
+Nombre del Producto: {{{productName}}}
+Demanda Prevista: {{{predictedDemand}}}
+Período de Tiempo: {{{timePeriod}}}
+Factores Contribuyentes: {{#each contributingFactors}}- {{{this}}}\n{{/each}}
+Tendencia Histórica de Ventas: {{{historicalSalesTrend}}}
 
-Explanation and Summary:`,
+Explicación y Resumen:`,
 });
 
 const salesForecastExplanationFlow = ai.defineFlow(

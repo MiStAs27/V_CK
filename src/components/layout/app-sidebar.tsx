@@ -12,8 +12,8 @@ import {
 import { LayoutGrid, Package, Warehouse } from 'lucide-react';
 
 const menuItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
-  { href: '/products', label: 'Products', icon: Package },
+  { href: '/dashboard', label: 'Panel de Control', icon: LayoutGrid },
+  { href: '/products', label: 'Productos', icon: Package },
 ];
 
 export function AppSidebar() {
@@ -24,7 +24,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
           <Warehouse className="w-8 h-8 text-primary" />
-          <span className="text-xl font-semibold">StockMaster</span>
+          <span className="text-xl font-semibold">Control de Stock</span>
         </div>
       </SidebarHeader>
       <SidebarMenu>

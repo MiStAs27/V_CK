@@ -31,14 +31,14 @@ export function LoginForm() {
           <div className="flex justify-center mb-2">
             <Warehouse className="w-10 h-10 text-primary" />
           </div>
-          <CardTitle className="text-2xl">StockMaster</CardTitle>
+          <CardTitle className="text-2xl">Control de Stock</CardTitle>
           <CardDescription>
-            Enter your credentials to access the inventory dashboard.
+            Introduce tus credenciales para acceder al panel de inventario.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">Correo Electrónico</Label>
             <Input
               id="email"
               type="email"
@@ -48,7 +48,7 @@ export function LoginForm() {
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Contraseña</Label>
             <Input
               id="password"
               type="password"
@@ -59,7 +59,7 @@ export function LoginForm() {
         </CardContent>
         <CardFooter>
           <Button className="w-full" type="submit">
-            Sign In
+            Iniciar Sesión
           </Button>
         </CardFooter>
       </form>
