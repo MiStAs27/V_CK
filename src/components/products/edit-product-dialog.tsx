@@ -69,7 +69,7 @@ export function EditProductDialog({
             }
           : {
               name: '',
-              imageUrl: `https://picsum.photos/seed/${Math.random()}/400/300`,
+              imageUrl: `https://picsum.photos/seed/new-product/400/300`,
               price: 0,
               stock: 0,
               status: 'active',
