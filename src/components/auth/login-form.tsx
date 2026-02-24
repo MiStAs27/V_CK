@@ -21,12 +21,6 @@ export function AuthForm() {
   const [signupEmail, setSignupEmail] = React.useState('');
   const [signupPassword, setSignupPassword] = React.useState('');
 
-  React.useEffect(() => {
-    // Set default values on the client to avoid hydration mismatch
-    setLoginEmail('admin@example.com');
-    setLoginPassword('password');
-  }, []);
-
   const handleLoginSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // In a real app, you'd handle authentication here.
