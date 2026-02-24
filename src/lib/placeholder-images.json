@@ -1,3 +1,64 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "classic-monitor",
+      "description": "A classic 4:3 computer monitor.",
+      "imageUrl": "https://images.unsplash.com/photo-1594400344473-cf8b48733c1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb21wdXRlciUyMG1vbml0b3J8ZW58MHx8fHwxNzcxODY0NzUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "computer monitor"
+    },
+    {
+      "id": "ergonomic-keyboard",
+      "description": "A split ergonomic keyboard.",
+      "imageUrl": "https://images.unsplash.com/photo-1637243218422-31b313a7627d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZXJnb25vbWljJTIwa2V5Ym9hcmR8ZW58MHx8fHwxNzcxODMyMDY2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ergonomic keyboard"
+    },
+    {
+      "id": "wireless-mouse",
+      "description": "A sleek wireless mouse.",
+      "imageUrl": "https://images.unsplash.com/photo-1586349906319-48d20e9d17e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3aXJlbGVzcyUyMG1vdXNlfGVufDB8fHx8MTc3MTgzMjA2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wireless mouse"
+    },
+    {
+      "id": "usb-c-hub",
+      "description": "A multi-port USB-C hub.",
+      "imageUrl": "https://images.unsplash.com/photo-1760376789487-994070337c76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx1c2IlMjBodWJ8ZW58MHx8fHwxNzcxNzg4NTE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "usb hub"
+    },
+    {
+      "id": "noise-cancelling-headphones",
+      "description": "Over-ear noise-cancelling headphones.",
+      "imageUrl": "https://images.unsplash.com/photo-1585298723682-7115561c51b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxoZWFkcGhvbmVzfGVufDB8fHx8MTc3MTg5MjkzNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "headphones"
+    },
+    {
+      "id": "webcam-4k",
+      "description": "A 4K resolution webcam.",
+      "imageUrl": "https://images.unsplash.com/photo-1626581795188-8efb9a00eeec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3ZWJjYW18ZW58MHx8fHwxNzcxODk2NDYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "webcam"
+    },
+    {
+      "id": "standing-desk",
+      "description": "An adjustable standing desk.",
+      "imageUrl": "https://images.unsplash.com/photo-1696453424380-4ca465118518?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdGFuZGluZyUyMGRlc2t8ZW58MHx8fHwxNzcxODk2NDYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "standing desk"
+    },
+    {
+      "id": "led-desk-lamp",
+      "description": "A modern LED desk lamp.",
+      "imageUrl": "https://images.unsplash.com/photo-1621447980929-6638614633c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkZXNrJTIwbGFtcHxlbnwwfHx8fDE3NzE4MzIyODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "desk lamp"
+    },
+    {
+      "id": "laptop-stand",
+      "description": "An aluminum laptop stand.",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1576697010739-6373b63f3204?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsYXB0b3AlMjBzdGFuZHxlbnwwfHx8fDE3NzE4OTY0NjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "laptop stand"
+    },
+    {
+      "id": "external-ssd",
+      "description": "A 1TB external solid state drive.",
+      "imageUrl": "https://images.unsplash.com/photo-1627486144847-03f8c678f90d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxleHRlcm5hbCUyMGRyaXZlfGVufDB8fHx8MTc3MTgwNDQ5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "external drive"
+    }
+  ]
 }
