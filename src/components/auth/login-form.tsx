@@ -17,8 +17,14 @@ import { Label } from '@/components/ui/label';
 
 export function LoginForm() {
   const router = useRouter();
-  const [email, setEmail] = React.useState('admin@example.com');
-  const [password, setPassword] = React.useState('password');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  React.useEffect(() => {
+    // Set default values on the client to avoid hydration mismatch
+    setEmail('admin@example.com');
+    setPassword('password');
+  }, []);
 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
