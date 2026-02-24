@@ -2,24 +2,21 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { Warehouse } from 'lucide-react';
+import { User, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export function AuthForm() {
   const router = useRouter();
+  const [isRegistering, setIsRegistering] = React.useState(false);
+
+  // Login form state
   const [loginEmail, setLoginEmail] = React.useState('');
   const [loginPassword, setLoginPassword] = React.useState('');
+
+  // Signup form state
   const [signupName, setSignupName] = React.useState('');
   const [signupEmail, setSignupEmail] = React.useState('');
   const [signupPassword, setSignupPassword] = React.useState('');
@@ -45,97 +42,133 @@ export function AuthForm() {
     router.push('/dashboard');
   };
 
-  return (
-    <Card className="w-full max-w-sm">
-      <CardHeader className="text-center">
-        <div className="flex justify-center mb-2">
-          <Warehouse className="w-10 h-10 text-primary" />
+  if (isRegistering) {
+    return (
+      <div className="w-full max-w-sm space-y-6 rounded-lg bg-card p-8 shadow-sm">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold">Registrarse</h1>
+          <p className="text-muted-foreground">Crea tu cuenta para empezar.</p>
         </div>
-        <CardTitle className="text-2xl">Control de Stock</CardTitle>
-        <CardDescription>
-          Accede a tu cuenta o crea una nueva.
-        </CardDescription>
-      </CardHeader>
-      <Tabs defaultValue="login" className="px-6 pb-6">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="login">Iniciar Sesión</TabsTrigger>
-          <TabsTrigger value="register">Añadir Usuario</TabsTrigger>
-        </TabsList>
-        <TabsContent value="login">
-          <form onSubmit={handleLoginSubmit}>
-            <CardContent className="grid gap-4 p-0 py-4">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Correo Electrónico</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="admin@example.com"
-                  required
-                  value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password">Contraseña</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="p-0">
-              <Button className="w-full" type="submit">
-                Iniciar Sesión
-              </Button>
-            </CardFooter>
-          </form>
-        </TabsContent>
-        <TabsContent value="register">
-          <form onSubmit={handleSignupSubmit}>
-            <CardContent className="grid gap-4 p-0 py-4">
-              <div className="grid gap-2">
-                <Label htmlFor="name">Nombre</Label>
-                <Input
-                  id="name"
-                  placeholder="Tu Nombre"
-                  required
-                  value={signupName}
-                  onChange={(e) => setSignupName(e.target.value)}
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="register-email">Correo Electrónico</Label>
-                <Input
-                  id="register-email"
-                  type="email"
-                  placeholder="tu@ejemplo.com"
-                  required
-                  value={signupEmail}
-                  onChange={(e) => setSignupEmail(e.target.value)}
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="register-password">Contraseña</Label>
-                <Input
-                  id="register-password"
-                  type="password"
-                  required
-                  value={signupPassword}
-                  onChange={(e) => setSignupPassword(e.target.value)}
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="p-0">
-              <Button className="w-full" type="submit">
-                Añadir Usuario
-              </Button>
-            </CardFooter>
-          </form>
-        </TabsContent>
-      </Tabs>
-    </Card>
+        <form onSubmit={handleSignupSubmit} className="space-y-4">
+          <div className="grid gap-2">
+            <Label htmlFor="name">Nombre</Label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="name"
+                placeholder="Tu Nombre"
+                required
+                value={signupName}
+                onChange={(e) => setSignupName(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="register-email">Correo Electrónico</Label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="register-email"
+                type="email"
+                placeholder="tu@ejemplo.com"
+                required
+                value={signupEmail}
+                onChange={(e) => setSignupEmail(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="register-password">Contraseña</Label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="register-password"
+                type="password"
+                required
+                value={signupPassword}
+                onChange={(e) => setSignupPassword(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          </div>
+          <Button className="w-full" type="submit">
+            Crear Cuenta
+          </Button>
+        </form>
+        <p className="text-center text-sm text-muted-foreground">
+          ¿Ya tienes una cuenta?{' '}
+          <button
+            onClick={() => setIsRegistering(false)}
+            className="font-semibold text-primary hover:underline focus:outline-none"
+          >
+            Iniciar Sesión
+          </button>
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full max-w-sm space-y-6 rounded-lg bg-card p-8 shadow-sm">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold">Iniciar Sesión</h1>
+      </div>
+      <form onSubmit={handleLoginSubmit} className="space-y-4">
+        <div className="grid gap-2">
+          <Label htmlFor="email">Usuario o correo electrónico</Label>
+          <div className="relative">
+            <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="email"
+              type="email"
+              placeholder="tu@ejemplo.com"
+              required
+              value={loginEmail}
+              onChange={(e) => setLoginEmail(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="password">Contraseña</Label>
+          <div className="relative">
+            <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="password"
+              type="password"
+              required
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Checkbox id="remember-me" />
+            <Label htmlFor="remember-me" className="text-sm font-normal">
+              Recuérdame
+            </Label>
+          </div>
+          <a href="#" className="text-sm text-primary hover:underline">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+        <Button className="w-full" type="submit">
+          Iniciar Sesión
+        </Button>
+      </form>
+      <p className="text-center text-sm text-muted-foreground">
+        ¿Eres nuevo aquí?{' '}
+        <button
+          onClick={() => setIsRegistering(true)}
+          className="font-semibold text-primary hover:underline focus:outline-none"
+        >
+          Crear una cuenta
+        </button>
+      </p>
+    </div>
   );
 }
