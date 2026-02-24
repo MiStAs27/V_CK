@@ -15,10 +15,12 @@ import { useToast } from '@/hooks/use-toast';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
+  onEdit: (product: TData) => void;
 }
 
 export function DataTableRowActions<TData>({
   row,
+  onEdit,
 }: DataTableRowActionsProps<TData>) {
   const { toast } = useToast();
 
@@ -41,7 +43,7 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onClick={() => handleAction('Editar')}>
+        <DropdownMenuItem onClick={() => onEdit(row.original)}>
             <Pencil className="mr-2 h-4 w-4" />
             Editar
         </DropdownMenuItem>

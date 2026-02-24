@@ -28,7 +28,11 @@ const FormattedPrice = ({ price }: { price: number }) => {
   return <div className="font-medium">{formatted}</div>;
 };
 
-export const columns: ColumnDef<Product>[] = [
+export const getColumns = ({
+  onEdit,
+}: {
+  onEdit: (product: Product) => void;
+}): ColumnDef<Product>[] => [
   {
     id: 'select',
     header: ({ table }) => (
@@ -108,6 +112,6 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => <DataTableRowActions row={row} onEdit={onEdit} />,
   },
 ];
