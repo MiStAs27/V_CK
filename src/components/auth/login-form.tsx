@@ -1,5 +1,6 @@
 'use client';
 
+import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { Warehouse } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -16,6 +17,9 @@ import { Label } from '@/components/ui/label';
 
 export function LoginForm() {
   const router = useRouter();
+  const [email, setEmail] = React.useState('admin@example.com');
+  const [password, setPassword] = React.useState('password');
+
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -44,7 +48,8 @@ export function LoginForm() {
               type="email"
               placeholder="admin@example.com"
               required
-              defaultValue="admin@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="grid gap-2">
@@ -53,7 +58,8 @@ export function LoginForm() {
               id="password"
               type="password"
               required
-              defaultValue="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </CardContent>
