@@ -23,6 +23,13 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -54,7 +61,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center">
+      <div className="flex items-center gap-4">
         <Input
           placeholder="Filtrar productos..."
           value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
@@ -63,6 +70,21 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
+        <Select
+          value={(table.getColumn('status')?.getFilterValue() as string) ?? 'all'}
+          onValueChange={(value) =>
+            table.getColumn('status')?.setFilterValue(value === 'all' ? '' : value)
+          }
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filtrar por estado" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Todos los estados</SelectItem>
+            <SelectItem value="active">Activo</SelectItem>
+            <SelectItem value="disabled">Desactivado</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <div className="rounded-md border">
         <Table>
