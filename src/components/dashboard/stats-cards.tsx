@@ -22,9 +22,9 @@ export function StatsCards() {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">
-            ${totalRevenue.toLocaleString('en-US', {-
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
+            {totalRevenue.toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD',
             })}
           </div>
           <p className="text-xs text-muted-foreground">Based on all historical sales</p>
