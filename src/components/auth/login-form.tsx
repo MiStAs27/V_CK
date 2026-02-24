@@ -7,8 +7,15 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export function AuthForm() {
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const router = useRouter();
   const [isRegistering, setIsRegistering] = React.useState(false);
 
@@ -35,6 +42,36 @@ export function AuthForm() {
     console.log('Creating user:', { name: signupName, email: signupEmail });
     router.push('/dashboard');
   };
+
+  if (!isClient) {
+    return (
+      <div className="w-full max-w-sm space-y-6">
+        <div className="space-y-2 text-center">
+          <Skeleton className="h-8 w-3/4 mx-auto" />
+          <Skeleton className="h-4 w-1/2 mx-auto" />
+        </div>
+        <div className="space-y-4 p-8">
+          <div className="grid gap-2">
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-10 w-full" />
+          </div>
+          <div className="grid gap-2">
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-10 w-full" />
+          </div>
+           <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Skeleton className="h-4 w-4" />
+              <Skeleton className="h-4 w-20" />
+            </div>
+            <Skeleton className="h-4 w-24" />
+          </div>
+          <Skeleton className="h-10 w-full" />
+        </div>
+        <Skeleton className="h-4 w-3/4 mx-auto" />
+      </div>
+    );
+  }
 
   if (isRegistering) {
     return (
