@@ -1,5 +1,5 @@
-import { AppSidebar } from '@/components/layout/app-sidebar';
-import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
+import { AppSidebar } from '@/componentes/diseno/barra-lateral-app';
+import { SidebarProvider, SidebarInset } from '@/componentes/ui/barra-lateral';
 
 export default function AppLayout({
   children,
